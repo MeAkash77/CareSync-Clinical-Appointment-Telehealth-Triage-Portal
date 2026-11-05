@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+}
+
+/* =========================================
+   Premium Theme Toggle View Transition (Circular Reveal)
+   ========================================= */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* The new view reveals as an expanding circle */
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: circle-reveal 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* 
+  By default, next-themes removes .dark instantly, so we just use 
+  the same expanding circle for both directions. It looks like a ripple!
+*/
+
+@keyframes circle-reveal {
+  from {
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--x, 50%) var(--y, 50%));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes reveal {
+  from { clip-path: circle(0% at var(--x) var(--y)); }
+  to   { clip-path: circle(150% at var(--x) var(--y)); }
+}
+
+::view-transition-new(root) {
+  animation: reveal 0.5s ease-in-out;
+}
+
+::view-transition-old(root) {
+  animation: none;
+}
