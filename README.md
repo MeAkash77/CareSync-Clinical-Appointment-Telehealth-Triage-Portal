@@ -161,7 +161,7 @@ flowchart TD
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/HarshJasani9/CareSync.git
+git clone https://github.com/MeAkash77/CareSync-Clinical-Appointment-Telehealth-Triage-Portal.git
 cd CareSync
 ```
 
